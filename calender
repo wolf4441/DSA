@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+// Define the structure for a day
+struct Day {
+char *name; // Dynamic string for day name
+int date; // Integer for date
+char *description; // Dynamic string for activity description
+};
+// Function to create the calendar
+void create(struct Day calendar[7]) {
+for (int i = 0; i < 7; i++) {
+// dynamically allocate memory for the day name and description
+calendar[i].name = (char *)malloc(50 * sizeof(char)); // Assuming max
+length of day name is 50 characters
+calendar[i].description = (char *)malloc(100 * sizeof(char)); // Assuming
+max length of description is 100 characters
+}
+}
+// Function to read the weekly activity details
+void read(struct Day calendar[7]) {
+for (int i = 0; i < 7; i++) {
+printf("Enter name for Day %d: ", i + 1);
+scanf("%s", calendar[i].name);
+printf("Enter date for Day %d: ", i + 1);
+scanf("%d", &calendar[i].date);
+printf("Enter description for Day %d: ", i + 1);
+scanf("%s", calendar[i].description);
+}
+}
+// Function to display the weekly activity details
+void display(struct Day calendar[7]) {
+for (int i = 0; i < 7; i++) {
+printf("Day Name: %s\n", calendar[i].name);
+printf("Date: %d\n", calendar[i].date);
+printf("Description: %s\n", calendar[i].description);
+printf("\n");
+}
+}
+int main() {
+struct Day calendar[7];
+// Call the create function to create the calendar
+create(calendar);
+read(calendar);
+// Display the weekly activity details
+printf("\nWeekly Activity Details:\n");
+display(calendar);
+// Free dynamically allocated memory
+for (int i = 0; i < 7; i++) {
+free(calendar[i].name);
+free(calendar[i].description);
+}
+return 0;
+}
